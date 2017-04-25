@@ -9,7 +9,6 @@ namespace Bangazon.API.Interface
 {
     interface IProductRepo
     {
-        void GetProducts(int ProductId, string Name, int Price);
         Product GetProduct(int ProductId);
         List<Product> GetProducts();
     }

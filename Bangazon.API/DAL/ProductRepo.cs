@@ -26,14 +26,11 @@ namespace Bangazon.API.DAL
             return _dbConnection.QueryFirstOrDefault(sql);
         }
 
-        public List<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
-            throw new NotImplementedException();
-        }
+            var sql = @"SELECT * FROM Product";
 
-        public void GetProducts(int ProductId, string Name, int Price)
-        {
-            throw new NotImplementedException();
+            return _dbConnection.Query<Product>(sql);
         }
     }
 }
