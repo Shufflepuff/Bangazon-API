@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bangazon.API.Controllers
 {
-    public interface ILineItemRepo
+    public interface IOrderLineRepo
     {
     }
 }
