@@ -23,7 +23,7 @@ namespace Bangazon.API.DAL
                     FROM Product 
                     WHERE ProductId = @ProductId";
 
-            return _dbConnection.Query(sql, Product);
+            return _dbConnection.QueryFirstOrDefault(sql);
         }
 
         public List<Product> GetProducts()
