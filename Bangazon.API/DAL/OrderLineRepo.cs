@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bangazon.API.Controllers
 {
-    public class LineItemRepo
+    public class OrderLineRepo
     {
     }
 }
