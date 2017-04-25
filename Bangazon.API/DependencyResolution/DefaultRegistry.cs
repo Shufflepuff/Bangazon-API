@@ -18,7 +18,10 @@
 namespace Bangazon.API.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
+    using System.Configuration;
+    using System.Data;
+    using System.Data.SqlClient;
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
