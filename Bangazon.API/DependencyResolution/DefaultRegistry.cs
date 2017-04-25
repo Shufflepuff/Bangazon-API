@@ -28,7 +28,7 @@ namespace Bangazon.API.DependencyResolution {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                 });
-            //For<IExample>().Use<Example>();
+            For<IDbConnection>().Use(c => new SqlConnection(ConfigurationManager.ConnectionStrings["ShufflepuffBang"].ConnectionString));
         }
 
         #endregion
