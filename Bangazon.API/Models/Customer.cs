@@ -27,6 +27,6 @@ namespace Bangazon.API.Models
         public int Zip { get; set; }
 
         [Required]
-        public long Phone { get; set; }
+        public string Phone { get; set; }
     }
 }

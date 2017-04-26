@@ -20,10 +20,17 @@ namespace Bangazon.API.DAL
 
         public void AddCustomer(Customer customer)
         {
-            var sql = @"Insert into Customer(name,address,city,state,zip,phone)
-                        Values(@name,@address,@city,@state,@zip,@phone)";
+            var sql = @"Insert into Customer(name,streetaddress,city,state,zip,phone)
+                        Values(@name,@streetaddress,@city,@state,@zip,@phone)";
 
-            _dbConnection.Execute(sql);
+            _dbConnection.Execute(sql, customer = new Customer() {
+                Name = customer.Name,
+                StreetAddress = customer.StreetAddress,
+                City = customer.City,
+                State = customer.State,
+                Zip = customer.Zip,
+                Phone = customer.Phone
+            });
         }
 
         public void DeleteCustomer(int id)
@@ -35,14 +42,14 @@ namespace Bangazon.API.DAL
 
         public IEnumerable<Customer> GetAllCustomers()
         {
-            var sql = @"Select name,address,city,state,zip,phone from Customer";
+            var sql = @"Select name,streetaddress,city,state,zip,phone from Customer";
 
             return _dbConnection.Query<Customer>(sql);
         }
 
         public Customer GetCustomer(int id)
         {
-            var sql = @"Select name,address,city,state,zip,phone from Customer where customerId = @id";
+            var sql = @"Select name,streetaddress,city,state,zip,phone from Customer where customerId = @id";
 
             return _dbConnection.QueryFirst<Customer>(sql);
         }
