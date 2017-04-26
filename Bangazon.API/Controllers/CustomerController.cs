@@ -41,5 +41,14 @@ namespace Bangazon.API.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, customers);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public HttpResponseMessage GetCustomer(int id)
+        {
+            var customer = _customerRepo.GetCustomer(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, customer);
+        }
     }
 }

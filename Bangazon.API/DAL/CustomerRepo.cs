@@ -49,9 +49,9 @@ namespace Bangazon.API.DAL
 
         public Customer GetCustomer(int id)
         {
-            var sql = @"Select name,streetaddress,city,state,zip,phone from Customer where customerId = @id";
+            var sql = @"Select name,streetaddress,city,state,zip,phone from Customer where CustomerId = @customerid";
 
-            return _dbConnection.QueryFirst<Customer>(sql);
+            return _dbConnection.QueryFirstOrDefault<Customer>(sql, new { customerid = id });
         }
 
         public void UpdateCustomer(Customer customer)
