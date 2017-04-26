@@ -9,6 +9,6 @@ namespace Bangazon.API.Models
     {
         public int InvoiceId { get; set; }
 
-        public List<LineItem> Items { get; set; }
+        public List<OrderLine> Items { get; set; }
     }
 }
