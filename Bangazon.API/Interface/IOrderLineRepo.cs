@@ -11,6 +11,7 @@ namespace Bangazon.API.Controllers
     public interface IOrderLineRepo
     {
         void AddOrderLine(OrderLine newOrderLine);
-        IEnumerable<OrderLine> GetAll(); 
+        IEnumerable<OrderLine> GetAll();
+        OrderLine GetOrderLine(int OrderLineId);
     }
 }

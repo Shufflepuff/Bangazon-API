@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace Bangazon.API.Controllers
-{   
+{
     [RoutePrefix("api/orderline")]
     public class OrderLineController : ApiController
     {
@@ -33,6 +33,15 @@ namespace Bangazon.API.Controllers
             var orderLine = _orderLineRepo.GetAll();
 
             return Request.CreateResponse(HttpStatusCode.OK, orderLine);
+        }
+
+        [HttpGet]
+        [Route ("/{OrderLineId}")]
+        public HttpResponseMessage GetOrderLineById(int OrderLineId)
+        {
+            var orderLineById = _orderLineRepo.GetOrderLine(OrderLineId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, orderLineById);
         }
     }
 }

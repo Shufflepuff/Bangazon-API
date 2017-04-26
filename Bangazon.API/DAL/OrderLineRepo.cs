@@ -31,5 +31,14 @@ namespace Bangazon.API.DAL
 
            return _dbConnection.Query<OrderLine>(sql);
         }
+
+        public OrderLine GetOrderLine(int OrderLineId)
+        {
+            var sql = @"SELECT * 
+                    FROM OrderLine 
+                    WHERE OrderLineId = @OrderLineId";
+
+            return _dbConnection.QueryFirstOrDefault<OrderLine>(sql, new { OrderLineId = OrderLineId });
+        }
     }
 }
