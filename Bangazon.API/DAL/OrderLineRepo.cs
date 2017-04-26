@@ -32,6 +32,13 @@ namespace Bangazon.API.DAL
            return _dbConnection.Query<OrderLine>(sql);
         }
 
+        public IEnumerable<OrderLine> GetByInvoice(int InvoiceId)
+        {
+            var sql = @"SELECT * FROM OrderLine WHERE InvoiceId = @InvoiceId";
+
+            return _dbConnection.Query<OrderLine>(sql, new { InvoiceId = InvoiceId});
+        }
+
         public OrderLine GetOrderLine(int OrderLineId)
         {
             var sql = @"SELECT * 
