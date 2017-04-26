@@ -29,7 +29,7 @@ namespace Bangazon.API.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetAllProductsShouldReturnAllProducts()
+        public void GetProductsShouldReturnAllProducts()
         {
             //arrange
             _mockedProductRepository.Setup(x => x.GetProducts())
@@ -49,6 +49,24 @@ namespace Bangazon.API.Tests.Controllers
             var content = result.Content as ObjectContent<IEnumerable<Product>>;
             var returnValue = content.Value as IEnumerable<Product>;
             Assert.AreEqual(3, returnValue.Count());
+        }
+
+        [TestMethod]
+        public void GetProductShouldReturnsCorrectProduct()
+        {
+            //arrange
+            _mockedProductRepository.Setup(x => x.GetProduct(1))
+                .Returns(() =>
+                    new Product { ProductId = 1, Name = "Apple", Price = 2 });
+
+            //act
+            var result = _controller.GetProduct(1);
+
+            //assert
+            Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+            var content = result.Content as ObjectContent<Product>;
+            var returnValue = content.Value as Product;
+            Assert.IsTrue(returnValue.ProductId == 1);
         }
     }
 }
