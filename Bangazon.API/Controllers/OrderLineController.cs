@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bangazon.API.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,8 +9,30 @@ using System.Web.Http;
 
 namespace Bangazon.API.Controllers
 {   
-    [RoutePrefix("api/lineitem")]
-    public class LineItemController : ApiController
+    [RoutePrefix("api/orderline")]
+    public class OrderLineController : ApiController
     {
+        readonly IOrderLineRepo _orderLineRepo;
+
+        public OrderLineController(IOrderLineRepo orderLineRepo)
+        {
+            _orderLineRepo = orderLineRepo;
+        }
+
+        [HttpPost]
+        public HttpResponseMessage AddNewOrderLine(OrderLine newOrderLine)
+        {
+            _orderLineRepo.AddOrderLine(newOrderLine);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetAll()
+        {
+            var orderLine = _orderLineRepo.GetAll();
+
+            return Request.CreateResponse(HttpStatusCode.OK, orderLine);
+        }
     }
 }
