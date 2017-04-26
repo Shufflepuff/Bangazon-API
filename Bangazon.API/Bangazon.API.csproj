@@ -262,6 +262,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderLineController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="DAL\OrderLineRepo.cs" />
     <Compile Include="DAL\ProductRepo.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
