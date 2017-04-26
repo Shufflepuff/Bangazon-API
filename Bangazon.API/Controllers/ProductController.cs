@@ -32,5 +32,14 @@ namespace Bangazon.API.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, product);
         }
+
+        [HttpGet]
+        [Route("all")]
+        public HttpResponseMessage GetProducts()
+        {
+            var products = _productRepo.GetProducts();
+
+            return Request.CreateResponse(HttpStatusCode.OK, products);
+        }
     }
 }
