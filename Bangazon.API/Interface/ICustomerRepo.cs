@@ -11,8 +11,8 @@ namespace Bangazon.API.Interface
     {
         Customer GetCustomer(int id);
         IEnumerable<Customer> GetAllCustomers();
-        bool AddCustomer(Customer customer);
-        bool UpdateCustomer(Customer customer);
-        bool DeleteCustomer(int id);
+        void AddCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
+        void DeleteCustomer(int id);
     }
 }
