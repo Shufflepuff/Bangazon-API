@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bangazon.API.Interface
 {
-    interface IProductRepo
+    public interface IProductRepo
     {
         Product GetProduct(int ProductId);
         List<Product> GetProducts();
