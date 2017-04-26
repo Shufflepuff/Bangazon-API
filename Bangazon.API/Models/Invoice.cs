@@ -8,7 +8,9 @@ namespace Bangazon.API.Models
     public class Invoice
     {
         public int InvoiceId { get; set; }
+        
+        public string Name { get; set; }
 
-        public List<OrderLine> Items { get; set; }
+        public int Quantity { get; set; }
     }
 }

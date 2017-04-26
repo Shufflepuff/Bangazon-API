@@ -19,8 +19,8 @@ namespace Bangazon.API.DAL
         }
         public int Save(Invoice newInvoice)
         {
-            var sql = @"insert into Invoice(invoiceid, items) 
-                        Values(@invoiceid, items); SELECT CAST(SCOPE_IDENTITY() as int)";
+            var sql = @"insert into Invoice(invoiceid) 
+                        Values(@invoiceid); SELECT CAST(SCOPE_IDENTITY() as int)";
                         // this sql will change as the properties on our model changes
 
             return _dbConnection.Query(sql, newInvoice).Single();
@@ -28,7 +28,9 @@ namespace Bangazon.API.DAL
 
        public IEnumerable<Invoice> GetAll()
         {
-           var sql = @"select paymentid, items from Invoice";
+           var sql = @"select I.InvoiceId, P.Name, OL.Quantity from Invoice I
+                        JOIN OrderLine OL on OL.InvoiceId = I.InvoiceId
+                        JOIN Product P on P.ProductId = OL.ProductId";
 
            return _dbConnection.Query<Invoice>(sql);
         }
