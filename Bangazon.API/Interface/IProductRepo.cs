@@ -10,6 +10,6 @@ namespace Bangazon.API.Interface
     public interface IProductRepo
     {
         Product GetProduct(int ProductId);
-        List<Product> GetProducts();
+        IEnumerable<Product> GetProducts();
     }
 }
