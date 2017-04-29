@@ -9,7 +9,9 @@ namespace Bangazon.API.Controllers
 {
     public interface IInvoiceRepository
     {
-        int Save(Invoice newInvoice);
+        int AddInvoice(Invoice newInvoice);
+        Invoice GetInvoice(int InvoiceId);
+        // int DeleteInvoice(int InvoiceId);
         IEnumerable<Invoice> GetAll();
     }
 }

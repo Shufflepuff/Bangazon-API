@@ -262,7 +262,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IInvoiceRepository.cs" />
+    <Compile Include="Interface\IInvoiceRepository.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="DAL\InvoiceRepository.cs" />
     <Compile Include="Controllers\OrderLineController.cs" />

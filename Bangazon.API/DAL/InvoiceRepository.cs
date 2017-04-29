@@ -17,7 +17,7 @@ namespace Bangazon.API.DAL
         {
             _dbConnection = connection;
         }
-        public int Save(Invoice newInvoice)
+        public int AddInvoice(Invoice newInvoice)
         {
             var sql = @"insert into Invoice(invoiceid) 
                         Values(@invoiceid); SELECT CAST(SCOPE_IDENTITY() as int)";
@@ -26,13 +26,30 @@ namespace Bangazon.API.DAL
             return _dbConnection.Query(sql, newInvoice).Single();
         }
 
-       public IEnumerable<Invoice> GetAll()
+        //public int DeleteInvoice(int InvoiceId)
+        //{
+        //    var sql = @"DELETE
+        //                FROM Invoice
+        //                WHERE InvoiceId = @InvoiceId";
+        //    _dbConnection.Execute(sql);
+        //}
+
+        public IEnumerable<Invoice> GetAll()
         {
            var sql = @"select I.InvoiceId, P.Name, OL.Quantity from Invoice I
                         JOIN OrderLine OL on OL.InvoiceId = I.InvoiceId
                         JOIN Product P on P.ProductId = OL.ProductId";
 
            return _dbConnection.Query<Invoice>(sql);
+        }
+
+        public Invoice GetInvoice(int InvoiceId)
+        {
+            var sql = @"SELECT * 
+                    FROM Invoice 
+                    WHERE InvoiceId = @InvoiceId";
+
+            return _dbConnection.QueryFirstOrDefault<Invoice>(sql, new { InvoiceId = InvoiceId });
         }
     }
 }
