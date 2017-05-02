@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Bangazon.API.Controllers
 {
-    [RoutePrefix("api/customer")]
+    [RoutePrefix("api/customers")]
     public class CustomerController : ApiController
     {
         readonly ICustomerRepo _customerRepo;
@@ -21,7 +21,7 @@ namespace Bangazon.API.Controllers
         }
 
         [HttpPost]
-        [Route("{add}")]
+        [Route("")]
         public HttpResponseMessage AddCustomer(Customer customer)
         {
             if (string.IsNullOrWhiteSpace(customer.Name))
@@ -35,6 +35,7 @@ namespace Bangazon.API.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public HttpResponseMessage GetAllCustomers()
         {
             var customers = _customerRepo.GetAllCustomers();
@@ -49,6 +50,15 @@ namespace Bangazon.API.Controllers
             var customer = _customerRepo.GetCustomer(id);
 
             return Request.CreateResponse(HttpStatusCode.OK, customer);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public HttpResponseMessage DeleteCustomer(int id)
+        {
+            _customerRepo.DeleteCustomer(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

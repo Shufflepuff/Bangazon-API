@@ -36,7 +36,7 @@ namespace Bangazon.API.Controllers
         }
 
         [HttpGet]
-        [Route ("/{OrderLineId}")]
+        [Route ("{OrderLineId}")]
         public HttpResponseMessage GetOrderLineById(int OrderLineId)
         {
             var orderLineById = _orderLineRepo.GetOrderLine(OrderLineId);

@@ -35,9 +35,9 @@ namespace Bangazon.API.DAL
 
         public void DeleteCustomer(int id)
         {
-            var sql = @"Delete from Customer where customerId = @id";
+            var sql = @"Delete from Customer where CustomerId = @customerid";
 
-            _dbConnection.Execute(sql);
+            _dbConnection.Execute(sql, new { customerid = id});
         }
 
         public IEnumerable<Customer> GetAllCustomers()
