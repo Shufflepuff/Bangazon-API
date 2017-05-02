@@ -12,7 +12,7 @@ namespace Bangazon.API.Controllers
         int AddInvoice(Invoice newInvoice);
         Invoice GetInvoice(int InvoiceId);
         Invoice UpdateInvoice(int InvoiceId);
-        bool DeleteInvoice(bool InvoiceId);
+        bool DeleteInvoice(int InvoiceId);
         IEnumerable<Invoice> GetAll();
     }
 }

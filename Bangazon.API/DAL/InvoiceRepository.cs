@@ -26,14 +26,15 @@ namespace Bangazon.API.DAL
             return _dbConnection.Query(sql, newInvoice).Single();
         }
 
-        public bool DeleteInvoice(bool InvoiceId)
+        public bool DeleteInvoice(int invoiceId)
         {
            var sql =  @"DELETE
                         FROM Invoice
                         WHERE InvoiceId = @InvoiceId";
-                    _dbConnection.Execute(sql);
 
-            return _dbConnection.QueryFirstOrDefault(sql, InvoiceId).Single();
+            var rowsAffected = _dbConnection.Execute(sql,new {InvoiceId = invoiceId});
+
+            return rowsAffected == 1;
         }
 
         public IEnumerable<Invoice> GetAll()

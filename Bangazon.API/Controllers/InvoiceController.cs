@@ -21,7 +21,7 @@ namespace Bangazon.API.Controllers
         [HttpPost]
         public IHttpActionResult CreateInvoice(Invoice invoice)
         {
-                if (! ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid invoice");
             }
@@ -31,7 +31,6 @@ namespace Bangazon.API.Controllers
         }
 
         [HttpGet]
-
         public HttpResponseMessage GetAll()
         {
             var invoices = _invoiceRepository.GetAll();
@@ -52,10 +51,19 @@ namespace Bangazon.API.Controllers
         [Route("Delete/{InvoiceId}")]
         public HttpResponseMessage DeleteInvoice(int invoiceId)
         {
-            var invoice = _invoiceRepository.DeleteInvoice(true);
-            return Request.CreateResponse(HttpStatusCode.OK, invoice);
+            var success = _invoiceRepository.DeleteInvoice(invoiceId);
+
+            if (success)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound,
+                    $"Could not find an invoice with id {invoiceId}");
+            }
         }
-        
-       // [HttpPut] - update
+
+        // [HttpPut] - update
     }
 }
