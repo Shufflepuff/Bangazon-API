@@ -46,18 +46,16 @@ namespace Bangazon.API.Controllers
             var invoice = _invoiceRepository.GetInvoice(invoiceId);
             return Request.CreateResponse(HttpStatusCode.OK, invoice);
         }
-          
 
         // delete
-        //[HttpDelete]
-        //[Route("Delete")]
-        //public HttpResponseMessage DeleteInvoice(int invoiceId)
-        //{
-        //    var invoice = _invoiceRepository.DeleteInvoice(invoiceId);
-        //    return Request.CreateResponse(HttpStatusCode.OK, invoice);
-        //}
+        [HttpDelete]
+        [Route("Delete/{InvoiceId}")]
+        public HttpResponseMessage DeleteInvoice(int invoiceId)
+        {
+            var invoice = _invoiceRepository.DeleteInvoice(true);
+            return Request.CreateResponse(HttpStatusCode.OK, invoice);
+        }
         
        // [HttpPut] - update
-      
     }
 }

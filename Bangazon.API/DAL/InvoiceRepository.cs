@@ -26,13 +26,15 @@ namespace Bangazon.API.DAL
             return _dbConnection.Query(sql, newInvoice).Single();
         }
 
-        //public int DeleteInvoice(int InvoiceId)
-        //{
-        //    var sql = @"DELETE
-        //                FROM Invoice
-        //                WHERE InvoiceId = @InvoiceId";
-        //    _dbConnection.Execute(sql);
-        //}
+        public bool DeleteInvoice(bool InvoiceId)
+        {
+           var sql =  @"DELETE
+                        FROM Invoice
+                        WHERE InvoiceId = @InvoiceId";
+                    _dbConnection.Execute(sql);
+
+            return _dbConnection.QueryFirstOrDefault(sql, InvoiceId).Single();
+        }
 
         public IEnumerable<Invoice> GetAll()
         {
@@ -50,6 +52,11 @@ namespace Bangazon.API.DAL
                     WHERE InvoiceId = @InvoiceId";
 
             return _dbConnection.QueryFirstOrDefault<Invoice>(sql, new { InvoiceId = InvoiceId });
+        }
+
+        public Invoice UpdateInvoice(int InvoiceId)
+        {
+            throw new NotImplementedException(); //an HTTP PUT
         }
     }
 }
