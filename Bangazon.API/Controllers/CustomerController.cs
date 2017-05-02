@@ -56,7 +56,19 @@ namespace Bangazon.API.Controllers
         [Route("{id}")]
         public HttpResponseMessage DeleteCustomer(int id)
         {
-            _customerRepo.DeleteCustomer(id);
+            var success = _customerRepo.DeleteCustomer(id);
+
+            if (success)
+                return Request.CreateResponse(HttpStatusCode.OK);
+
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Could not find a customer with id {id}.");
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public HttpResponseMessage UpdateCustomer(Customer updatedCustomer, int id)
+        {
+            _customerRepo.UpdateCustomer(updatedCustomer, id);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

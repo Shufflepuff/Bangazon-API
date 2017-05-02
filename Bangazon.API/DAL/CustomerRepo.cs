@@ -33,11 +33,13 @@ namespace Bangazon.API.DAL
             });
         }
 
-        public void DeleteCustomer(int id)
+        public bool DeleteCustomer(int id)
         {
             var sql = @"Delete from Customer where CustomerId = @customerid";
 
-            _dbConnection.Execute(sql, new { customerid = id});
+            var rowsAffected = _dbConnection.Execute(sql, new { customerid = id });
+
+            return rowsAffected == 1;
         }
 
         public IEnumerable<Customer> GetAllCustomers()
@@ -54,7 +56,7 @@ namespace Bangazon.API.DAL
             return _dbConnection.QueryFirstOrDefault<Customer>(sql, new { customerid = id });
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer, int id)
         {
             throw new NotImplementedException();
         }
