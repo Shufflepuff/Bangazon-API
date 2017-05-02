@@ -43,5 +43,14 @@ namespace Bangazon.API.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, orderLineById);
         }
+
+        [HttpPut]
+        [Route ("update/{OrderLineId}")]
+        public HttpResponseMessage UpdateOrderLineById(OrderLine updateOrderLine, int OrderLineId)
+        {
+            _orderLineRepo.UpdateOrderLine(updateOrderLine, OrderLineId);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

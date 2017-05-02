@@ -13,5 +13,6 @@ namespace Bangazon.API.Controllers
         void AddOrderLine(OrderLine newOrderLine);
         IEnumerable<OrderLine> GetAll();
         OrderLine GetOrderLine(int OrderLineId);
+        void UpdateOrderLine(OrderLine updateOrderLine, int OrderLineId);
     }
 }
