@@ -46,6 +46,7 @@ namespace Bangazon.API.DAL
             var sql = @"UPDATE OrderLine 
                       SET InvoiceId = @InvoiceId, ProductId = @ProductId, Quantity = @Quantity
                       WHERE OrderLineId = " + OrderLineId.ToString();
+                      //WHERE OrderLineId = @OrderLineId"; 
 
             //_dbConnection.Execute(sql, new { updateOrderLine, OrderLineId = OrderLineId });
             _dbConnection.Execute(sql, updateOrderLine);
