@@ -41,13 +41,14 @@ namespace Bangazon.API.DAL
             return _dbConnection.QueryFirstOrDefault<OrderLine>(sql, new { OrderLineId = OrderLineId });
         }
 
-        public void UpdateOrderLine(OrderLine updateOrderLine, int Id)
+        public void UpdateOrderLine(OrderLine updateOrderLine, int OrderLineId)
         {
             var sql = @"UPDATE OrderLine 
                       SET InvoiceId = @InvoiceId, ProductId = @ProductId, Quantity = @Quantity
-                      WHERE OrderLineId = @Id";
+                      WHERE OrderLineId = " + OrderLineId.ToString();
 
-            _dbConnection.Execute(sql, new { updateOrderLine, Id = Id });
+            //_dbConnection.Execute(sql, new { updateOrderLine, OrderLineId = OrderLineId });
+            _dbConnection.Execute(sql, updateOrderLine);
         }
     }
 }
